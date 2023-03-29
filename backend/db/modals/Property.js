@@ -68,6 +68,10 @@ const propertySchema = new mongoose.Schema({
       required: true,
     },
   },
+  photos: {
+    type: [String],
+    required: true,
+  },
 });
 
 const Property = mongoose.model("Property", propertySchema);

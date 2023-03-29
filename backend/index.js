@@ -1,18 +1,23 @@
+require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/config");
 const mongoose = require("mongoose");
+const Property = require("./db/modals/Property");
+const seeds = require("./db/seeders/Properties");
 
-const PORT = 5001;
+console.log(seeds);
+
+const { PORT = 5001 } = process.env;
 
 const app = express();
 
 const connect = async () => {
   try {
     await connectDB();
-    await User.deleteMany({});
-    console.log("Deleted all users");
-    await User.create(seeds);
-    console.log("Created users");
+    await Property.deleteMany({});
+    console.log("Deleted all properties");
+    await Property.insertMany(seeds);
+    console.log("Created properties");
     mongoose.connection.close();
     console.log("Closed connection");
     app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

@@ -21,6 +21,11 @@ const properties = [
       type: "Finished",
       squareFootage: 1000,
     },
+    photos: [
+      "./assets/house.jpeg",
+      "./assets/house-2.jpeg",
+      "./assets/house-3.jpeg",
+    ],
   },
   {
     mlsNumber: "234567",
@@ -44,6 +49,11 @@ const properties = [
       type: "Unfinished",
       squareFootage: 0,
     },
+    photos: [
+      "./assets/house-7.jpeg",
+      "./assets/house-8.jpeg",
+      "./assets/house-9.jpeg",
+    ],
   },
   {
     mlsNumber: "345678",
@@ -67,5 +77,12 @@ const properties = [
       type: "None",
       squareFootage: 0,
     },
+    photos: [
+      "./assets/house-4.jpeg",
+      "./assets/house-5.jpeg",
+      "./assets/house-6.jpeg",
+    ],
   },
 ];
+
+module.exports = properties;
