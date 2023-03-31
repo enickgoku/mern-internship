@@ -1,70 +1,64 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Project was created for the purpose of serving as an application for a MERN stack position. This project uses the development environment and not an outside database.
 
 ## Available Scripts
 
-In the project directory, you can run:
+To start this project you will need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/download/).
 
-### `npm start`
+## From the command line run the following commands:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+(Notes for MacOS)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+\*\*
 
-### `npm test`
+mongod
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+if you have a db folder in your Users/user/data directory. If you do not have a data folder, you will need to create one and run: mongod --dbpath ~/data/db
 
-### `npm run build`
+note: I have had to run the second command in order to get the mongo server to start. If you have a data folder in your User directory, you can run the first command and should be good to go.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+this will start the mongo server on your machine.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+\*\*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+mongosh
 
-### `npm run eject`
+(to start the mongo shell)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+show dbs
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+(to show the databases)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+use mernInternship
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+(to use/create the database)
 
-## Learn More
+## From these Directories Run the following commands:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `backend directory`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+create a .env file and add the following:
 
-### Code Splitting
+MONGO_URI=mongodb://localhost:27017/mernInternship
+PORT=5001
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `client directory`
 
-### Analyzing the Bundle Size
+create a .env file and add the following:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+REACT_APP_API_URL=http://localhost:5001
 
-### Making a Progressive Web App
+### `root directory`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+yarn install
 
-### Advanced Configuration
+cd backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+yarn start
 
-### Deployment
+cd client
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+yarn start
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+My apologies for the long instructions. If you dive into any issues, please reach out! I am happy to help.
