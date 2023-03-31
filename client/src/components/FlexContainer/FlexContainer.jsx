@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box } from '@mui/material'
 const { styled } = require('@mui/system')
 
