@@ -17,6 +17,7 @@ export const tokensDark = {
   },
   primary: {
     // blue
+    50: "#f0f0f0", // text color
     100: "#d3d4de",
     200: "#a6a9be",
     300: "#7a7f9d",

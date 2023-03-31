@@ -32,37 +32,37 @@ const menuOptions = [
   {
     name: 'Dashboard',
     icon: <DashboardIcon />,
-    path: '/',
+    path: 'dashboard',
   },
   {
     name: 'Search Property',
     icon: <TroubleshootIcon />,
-    path: '/',
+    path: 'searchproperty',
   },
   {
     name: 'Calender',
     icon: <CalendarMonthIcon />,
-    path: '/',
+    path: 'calender',
   },
   {
     name: 'My Clients',
     icon: <PeopleAltIcon />,
-    path: '/',
+    path: 'clients',
   },
   {
     name: 'MLS Listings',
     icon: <ShoppingCartIcon />,
-    path: '/',
+    path: 'mlslistings',
   },
   {
     name: 'Notifications',
     icon: <NotificationsIcon />,
-    path: '/',
+    path: 'notifications',
   },
   {
     name: 'Invite and Share',
     icon: <ShareIcon />,
-    path: '/',
+    path: 'share',
   }
 ]
 
@@ -103,15 +103,30 @@ const Sidebar = ({
           <Box width='100%'>
             <Box m='1.5rem 2rem 2rem 3rem'>
               <FlexContainer color={theme.palette.secondary.main}>
-                <Box display='flex' alignItems='center' gap='0.5rem'>
-                  <WarehouseIcon fontSize='large' />
-                  <Typography variant='h4' fontWeight='bold'>
+                <Box 
+                  display='flex'
+                  flexDirection='column'
+                  alignItems='center'
+                  justifyContent='center'
+                  gap='0.5rem'
+                  sx={{
+                    mr: '0.6rem',
+                    ml: '0.6rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  <WarehouseIcon fontSize='large' 
+                    sx={{ 
+                      color: theme.palette.primary[50]
+                    }}
+                  />
+                  <Typography variant='h4' fontWeight='bold' color={theme.palette.primary[50]}>
                     Mern Internship
                   </Typography>
                 </Box>
                 {isNotMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <ChevronLeft fontSize='large' sx={{ ml: '0.8rem' }} />
+                    <ChevronLeft fontSize='large' />
                   </IconButton>
                 )}
               </FlexContainer>
@@ -120,12 +135,35 @@ const Sidebar = ({
               display: 'flex',
               justifyContent: 'center',
             }}>
-              <Button>
-                <Typography variant='h6' fontWeight='bold' color={theme.palette.primary}>
+              <Button sx={{ backgroundColor: theme.palette.secondary[700]}}>
+                <Typography variant='h6' fontWeight='bold' color={theme.palette.primary[50]}>
                   Create New Tour +
                 </Typography>
               </Button>
             </Box>
+            <List>
+              {menuOptions.map(({ name, icon, path }) => {
+                return (
+                  <ListItem key={name}>
+                    <ListItemButton onClick={() => 
+                      {
+                        navigate(`${path}`)
+                        setActiveUrl(path)
+                      }}
+                    >
+                      <ListItemIcon>
+                        {icon}
+                      </ListItemIcon>
+                      <ListItemText sx={{ color: theme.palette.primary[50]}}>
+                        <Typography variant='h6'>
+                          {name}
+                        </Typography>
+                      </ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })};
+            </List>
           </Box>
         </Drawer>  
       )}
