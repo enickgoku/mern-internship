@@ -2,9 +2,9 @@ require("dotenv").config();
 const app = require("./app");
 const connectDB = require("./db/config");
 const mongoose = require("mongoose");
-const Property = require("./db/modals/Property");
-const User = require("./db/modals/User");
-const Client = require("./db/modals/Client");
+const Property = require("./db/models/Property");
+const User = require("./db/models/User");
+const Client = require("./db/models/Client");
 const { users, clients, properties } = require("./db/seeders/Seeds");
 
 console.log(users);
@@ -21,6 +21,7 @@ const connect = async () => {
     await Client.insertMany(clients);
     await Property.insertMany(properties);
     console.log("DB Seeded");
+    mongoose.connection.close();
     app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
   } catch (err) {
     console.log(err);
