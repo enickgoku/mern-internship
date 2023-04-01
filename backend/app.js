@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const propertyRouter = require("./properties/properties.router");
 
+const bodyParser = require("body-parser");
+
 const notFound = require("./errors/notFound");
 const errorHandler = require("./errors/errorHandler");
 

@@ -72,6 +72,10 @@ const propertySchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  client: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+  },
 });
 
 const Property = mongoose.model("Property", propertySchema);
