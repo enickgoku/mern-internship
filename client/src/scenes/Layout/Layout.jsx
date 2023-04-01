@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 
-
 const Layout = () => {
-  const isNotMobile = useMediaQuery("(min-width: 600px)")
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const isNotMobile = useMediaQuery("(min-width: 600px)");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
     <Box display={isNotMobile ? 'flex' : 'block'} width='100%' height='100%'>
       <Sidebar

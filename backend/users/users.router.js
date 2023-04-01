@@ -3,6 +3,6 @@ const controller = require("./users.controller");
 
 const router = require("express").Router();
 
-router.route("/").get(controller.list).all(methodNotAllowed);
+router.route("/:userId").get(controller.list).all(methodNotAllowed);
 
 module.exports = router;

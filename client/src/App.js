@@ -4,6 +4,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useGetUserQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
 import Dashboard from "./scenes/Dashboard";
@@ -16,8 +17,8 @@ const App = () => {
   const [properties, setProperties] = useState([]);
   const [user, setUser] = useState([]);
   const [clients, setClients] = useState([]);
-
-  console.log(clients);
+  const userId = useSelector((state) => state.global.userId);
+  const { data: userData } = useGetUserQuery(userId);
 
   useEffect(() => {
     const fetchClients = async () => {
@@ -30,22 +31,21 @@ const App = () => {
       const data = await response.json();
       setProperties(data);
     };
-    const fetchUser = async () => {
-      const response = await fetch(`${REACT_APP_API_URL}/user`);
-      const data = await response.json();
-      setUser(data);
-    };
+    setUser(userData);
     fetchClients();
-    fetchUser();
     fetchProperties();
-  }, []);
+  }, [userData]);
+
+  if (!userData) {
+    return <p>Please Log In</p>; // make sign in component with a fetch for user data again.
+  }
 
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route element={<Layout />}>
+          <Route element={<Layout user={user || {}} />}>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
