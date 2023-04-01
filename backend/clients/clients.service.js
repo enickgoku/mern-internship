@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Client = require("../db/models/Property");
+const Client = require("../db/models/Client");
 
 const getClients = async () => {
   const clients = await Client.find({});

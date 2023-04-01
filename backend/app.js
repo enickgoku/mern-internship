@@ -6,8 +6,6 @@ const propertyRouter = require("./properties/properties.router");
 const userRouter = require("./users/users.router");
 const clientRouter = require("./clients/clients.router");
 
-const bodyParser = require("body-parser");
-
 const notFound = require("./errors/notFound");
 const errorHandler = require("./errors/errorHandler");
 
@@ -16,7 +14,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", userRouter, clientRouter, propertyRouter);
+app.use("/clients", clientRouter);
+app.use("/user", userRouter);
+app.use("/properties", propertyRouter);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,8 +1,8 @@
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const service = require("./users.service");
 
-const list = (req, res, next) => {
-  const data = service.getUsers();
+const list = async (req, res, next) => {
+  const data = await service.getUsers();
   res.json(data);
 };
 

@@ -7,8 +7,6 @@ const User = require("./db/models/User");
 const Client = require("./db/models/Client");
 const { users, clients, properties } = require("./db/seeders/Seeds");
 
-console.log(users);
-
 const { PORT = 5001 } = process.env;
 
 const connect = async () => {
@@ -21,7 +19,7 @@ const connect = async () => {
     await Client.insertMany(clients);
     await Property.insertMany(properties);
     console.log("DB Seeded");
-    mongoose.connection.close();
+    // mongoose.connection.close();
     app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
   } catch (err) {
     console.log(err);
