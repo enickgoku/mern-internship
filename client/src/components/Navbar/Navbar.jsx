@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LightModeOutlined,
   DarkModeOutlined,
@@ -27,11 +27,29 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
     setAnchorEl(null);
   };
 
+  // if you scroll down, the navbar background will be black
+
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScroll = () => {
+    const positionY = window.scrollY;
+    setIsScrolling(positionY > 0);
+  };
+
+// Add event listener for scroll events
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <AppBar sx={{
-      position: 'static',
-      background: 'none',
+      position: 'sticky',
+      background: isScrolling ? 'black' : 'transparent',
       boxShadow: 'none',
+      transition: 'all 0.3s ease-in-out',
     }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* Left Side */}

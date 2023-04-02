@@ -24,6 +24,10 @@ const propertySchema = new mongoose.Schema({
       required: true,
     },
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   bedrooms: {
     type: Number,
     required: true,

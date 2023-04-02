@@ -8,6 +8,7 @@ import { useGetUserQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
 import Dashboard from "./scenes/Dashboard";
+import PropertyList from "./scenes/Properties";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -34,7 +35,6 @@ const App = () => {
       });
       return { ...property, photos };
     });
-    console.log(propertiesWithPhotos);
     setProperties(propertiesWithPhotos);
   };
 
@@ -54,7 +54,10 @@ const App = () => {
         <CssBaseline />
         <Routes>
           <Route element={<Layout user={user || {}} />}>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route
+              path="/"
+              element={<PropertyList properties={properties} />}
+            />
             <Route
               path="/dashboard"
               element={<Dashboard properties={properties} />}

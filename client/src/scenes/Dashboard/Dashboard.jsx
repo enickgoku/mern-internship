@@ -5,7 +5,7 @@ import FlexContainer from "../../components/FlexContainer";
 const Dashboard = ({ properties }) => {
   return (
     <FlexContainer>
-      <SlideShow properties={properties} />
+      {/* <SlideShow properties={properties} /> */}
     </FlexContainer>
   );
 };
