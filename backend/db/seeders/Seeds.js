@@ -28,8 +28,8 @@ const clients = [
 const users = [
   {
     _id: "63701cc1f03239c72c00018a",
-    name: "Felice",
-    email: "fleivesleyb@liveinternet.ru",
+    name: "Nick Engelhardt",
+    email: "someemail@someplace.com",
     password: "vDE7joT",
     city: "Hrušica",
     state: null,
@@ -38,6 +38,7 @@ const users = [
     phoneNumber: "2401478620",
     role: "user",
     clients: [clients[0]._id, clients[1]._id],
+    photo: "user.png",
   },
 ];
 
@@ -68,11 +69,7 @@ const properties = [
       type: "None",
       squareFootage: 0,
     },
-    photos: [
-      "./assets/house-4.jpeg",
-      "./assets/house-5.jpeg",
-      "./assets/house-6.jpeg",
-    ],
+    photos: ["house-4.jpeg", "house-5.jpeg", "house-6.jpeg"],
     client: [clients[0]._id],
   },
   {
@@ -98,11 +95,7 @@ const properties = [
       type: "finished",
       squareFootage: 500,
     },
-    photos: [
-      "./assets/house-7.jpeg",
-      "./assets/house-8.jpeg",
-      "./assets/house-9.jpeg",
-    ],
+    photos: ["house-7.jpeg", "house-8.jpeg", "house-9.jpeg"],
     client: [clients[0]._id],
   },
 ];

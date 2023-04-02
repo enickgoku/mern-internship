@@ -20,17 +20,25 @@ const App = () => {
   const userId = useSelector((state) => state.global.userId);
   const { data: userData } = useGetUserQuery(userId);
 
+  const fetchClients = async () => {
+    const response = await fetch(`${REACT_APP_API_URL}/clients`);
+    const data = await response.json();
+    setClients(data);
+  };
+  const fetchProperties = async () => {
+    const response = await fetch(`${REACT_APP_API_URL}/properties`);
+    const data = await response.json();
+    const propertiesWithPhotos = data.map((property) => {
+      const photos = property.photos.map((filename) => {
+        return `${REACT_APP_API_URL}/db/seeders/assets/${filename}`;
+      });
+      return { ...property, photos };
+    });
+    console.log(propertiesWithPhotos);
+    setProperties(propertiesWithPhotos);
+  };
+
   useEffect(() => {
-    const fetchClients = async () => {
-      const response = await fetch(`${REACT_APP_API_URL}/clients`);
-      const data = await response.json();
-      setClients(data);
-    };
-    const fetchProperties = async () => {
-      const response = await fetch(`${REACT_APP_API_URL}/properties`);
-      const data = await response.json();
-      setProperties(data);
-    };
     setUser(userData);
     fetchClients();
     fetchProperties();
@@ -47,7 +55,10 @@ const App = () => {
         <Routes>
           <Route element={<Layout user={user || {}} />}>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={<Dashboard properties={properties} />}
+            />
           </Route>
         </Routes>
       </ThemeProvider>

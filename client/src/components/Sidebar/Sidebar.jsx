@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import { ChevronLeft } from '@mui/icons-material';
+import { ChevronLeft, HelpOutline } from '@mui/icons-material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -71,6 +71,7 @@ const Sidebar = ({
   isSidebarOpen,
   isNotMobile,
   setIsSidebarOpen,
+  user,
   }) => {
   const { pathname } = useLocation();
   const [activeUrl, setActiveUrl] = useState("");
@@ -124,7 +125,7 @@ const Sidebar = ({
                     Mern Internship
                   </Typography>
                 </Box>
-                {isNotMobile && (
+                {!isNotMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <ChevronLeft fontSize='large' />
                   </IconButton>
@@ -164,6 +165,34 @@ const Sidebar = ({
                 );
               })};
             </List>
+          </Box>
+          <Box position='absolute' bottom='2rem'>
+            <FlexContainer
+              gap='1rem'
+              flexDirection='column'
+            >
+              <Box>
+                <Box textAlign='left'>
+                  <Typography 
+                    fontSize='0.9rem' 
+                    sx={{ mt: '1rem', ml: '1rem', color: theme.palette.primary[50] }}
+                  >
+                    Need Help?
+                  </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', mt: '1rem' }}>
+                  <IconButton sx={{ borderRadius: '0', m: '0'}}>
+                    <HelpOutline sx={{ marginRight: '0.5rem' }} />
+                    <Typography
+                      fontSize='0.9rem'
+                      sx={{ color: theme.palette.primary[50] }}
+                    >
+                      Help Desk
+                    </Typography>
+                  </IconButton>
+                </Box>
+              </Box>
+            </FlexContainer>
           </Box>
         </Drawer>  
       )}

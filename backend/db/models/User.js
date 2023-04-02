@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema(
         ref: "Client",
       },
     ],
+    photo: {
+      type: String,
+      default: "user.png",
+    },
   },
   { timestamps: true }
 );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { LightModeOutlined,
+import { 
+  LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
   Search, 
@@ -9,12 +10,23 @@ import { LightModeOutlined,
 import FlexContainer from '../FlexContainer';
 import { useDispatch } from 'react-redux';
 import { setMode } from '../../state'
-import { AppBar, IconButton, InputBase, Toolbar, useTheme } from '@mui/material'
+import { AppBar, Box, Button, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography, useTheme } from '@mui/material';
 
-
-const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
   const dispatch = useDispatch()
   const theme = useTheme()
+
+  const [anchorEl, setAnchorEl] = useState(false);
+  const isOpen = Boolean(anchorEl);
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar sx={{
       position: 'static',
@@ -51,6 +63,80 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           <IconButton>
             <SettingsOutlined sx={{ fontSize: '25px' }} />
           </IconButton>
+          <FlexContainer sx={{ display: 'flex' }}>
+            <Button onClick={handleClick}
+              sx={{ 
+                display: 'flex',
+                justifyContent:'space-between',
+                alignItems: 'center',
+                textTransform: 'none',
+                gap: '0.5rem',
+              }}
+            >
+              <Box
+                component='img'
+                src={user.photo}
+                height='30px'
+                width='30px'
+                borderRadius='50%'
+                sx={{ objectFit: 'cover' }}
+              />
+              <Box textAlign='left'>
+                <Typography
+                  fontWeight='bold'
+                  fontSize='0.85rem'
+                  sx={{ color: theme.palette.primary[50] }}
+                >
+                  {user.name}
+                </Typography>
+                <Typography
+                  fontSize='0.75rem'
+                  sx={{ color: theme.palette.primary[50] }}
+                >
+                  {user.email}
+                </Typography>
+              </Box>
+              <ArrowDropDownOutlined
+                sx={{ color: theme.palette.secondary[300], fontSize: '25px'}}
+              />
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              open={isOpen}
+              onClose={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: 'visible',
+                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                  '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+          </FlexContainer>
         </FlexContainer>
       </Toolbar>
     </AppBar>

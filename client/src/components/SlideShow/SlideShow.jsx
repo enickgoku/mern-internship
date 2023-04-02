@@ -23,9 +23,11 @@ const variants = {
   },
 };
 
-export default function Slideshow({ images }) {
+export default function Slideshow({ properties }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
+
+  const images = [];
 
   const handlePrevClick = () => {
     setCurrentIndex((currentIndex - 1 + images.length) % images.length);
