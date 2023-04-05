@@ -7,7 +7,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useGetUserQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
-import Dashboard from "./scenes/Dashboard";
 import PropertyList from "./scenes/Properties";
 import Property from "./scenes/Property";
 
@@ -50,6 +49,12 @@ const App = () => {
   if (!userData) {
     return <p>Please Log In</p>; // make sign in component with a fetch for user data again.
   }
+  if (!clients) {
+    return <p>Loading...</p>;
+  }
+  if (!properties) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="app">
@@ -61,13 +66,18 @@ const App = () => {
               path="/"
               element={<PropertyList properties={properties || []} />}
             />
-            <Route
+            {/* <Route
               path="/dashboard"
               element={<Dashboard properties={properties || []} />}
-            />
+            /> */}
             <Route
               path="/properties/:id"
-              element={<Property properties={properties || []} />}
+              element={
+                <Property
+                  properties={properties || []}
+                  clients={clients || []}
+                />
+              }
             />
           </Route>
         </Routes>

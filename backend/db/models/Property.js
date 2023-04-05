@@ -77,7 +77,7 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   client: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: [String],
     ref: "Client",
   },
 });

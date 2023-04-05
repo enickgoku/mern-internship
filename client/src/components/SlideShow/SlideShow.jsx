@@ -24,7 +24,7 @@ const variants = {
   },
 };
 
-export default function Slideshow({ photos }) {
+export default function Slideshow({ photos = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -32,7 +32,6 @@ export default function Slideshow({ photos }) {
   const theme = useTheme();
 
   const isExtraSmall = useMediaQuery(theme.breakpoints.up("sm"));
-
   useEffect(() => {
     const imagePromises = propertyPhotos.map((photo) => {
       return new Promise((resolve) => {
@@ -70,11 +69,11 @@ export default function Slideshow({ photos }) {
           initial="enter"
           animate="center"
           exit="exit"
-          width={500}
-          height={300}
+          width={isExtraSmall ? "100%" : "auto"}
+          height={isExtraSmall ? "auto" : "300px"}
           variants={variants}
           custom={direction}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.6 }}
         />
       )}
       <IconButton

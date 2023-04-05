@@ -1,11 +1,10 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Card,
   CardHeader,
   CardContent,
-  Divider,
   Typography,
   useTheme,
   useMediaQuery,
@@ -16,6 +15,7 @@ import SlideShow from "../../components/SlideShow";
 const PropertyCard = ({ property }) => {
   const theme = useTheme();
   const { address, photos, homeType, squareFootage, _id } = property;
+  const navigate = useNavigate();
 
   const isNotMobile = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -36,6 +36,7 @@ const PropertyCard = ({ property }) => {
         },
         textOverflow: "ellipsis",
       }}
+      onClick={() => navigate(`/properties/${_id}`)}
     >
       <CardHeader title={address.street} subheader={homeType} />
       <Box

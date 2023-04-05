@@ -32,7 +32,7 @@ const menuOptions = [
   {
     name: "Dashboard",
     icon: <DashboardIcon />,
-    path: "dashboard",
+    path: "/",
   },
   {
     name: "Search Property",
