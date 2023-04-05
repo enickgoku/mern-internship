@@ -3,7 +3,7 @@ import { Box, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { motion } from "framer-motion";
-import { useTheme } from "@mui/material";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 const variants = {
   enter: (direction) => {
@@ -28,10 +28,13 @@ export default function Slideshow({ photos }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [propertyPhotos, setPhotos] = useState(photos); // [photo1, photo2, photo3
   const theme = useTheme();
 
+  const isExtraSmall = useMediaQuery(theme.breakpoints.up("sm"));
+
   useEffect(() => {
-    const imagePromises = photos.map((photo) => {
+    const imagePromises = propertyPhotos.map((photo) => {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
@@ -43,8 +46,9 @@ export default function Slideshow({ photos }) {
 
     Promise.all(imagePromises).then(() => {
       setLoaded(true);
+      setPhotos(propertyPhotos);
     });
-  }, [photos]);
+  }, [photos, propertyPhotos]);
 
   const handlePrevClick = () => {
     setCurrentIndex((currentIndex - 1 + photos.length) % photos.length);
@@ -61,7 +65,7 @@ export default function Slideshow({ photos }) {
       {loaded && (
         <motion.img
           key={currentIndex}
-          src={photos[currentIndex]}
+          src={propertyPhotos[currentIndex]}
           alt=""
           initial="enter"
           animate="center"
@@ -78,8 +82,11 @@ export default function Slideshow({ photos }) {
           backgroundColor: theme.palette.secondary[800],
           position: "absolute",
           top: "50%",
-          left: 0,
+          left: isExtraSmall ? "10px" : "120px",
           transform: "translateY(-50%)",
+          "&:hover": {
+            backgroundColor: theme.palette.secondary[600],
+          },
         }}
         onClick={handlePrevClick}
       >
@@ -90,8 +97,11 @@ export default function Slideshow({ photos }) {
           backgroundColor: theme.palette.secondary[800],
           position: "absolute",
           top: "50%",
-          right: 0,
+          right: isExtraSmall ? "10px" : "120px",
           transform: "translateY(-50%)",
+          "&:hover": {
+            backgroundColor: theme.palette.secondary[600],
+          },
         }}
         onClick={handleNextClick}
       >

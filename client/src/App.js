@@ -9,6 +9,7 @@ import { useGetUserQuery } from "./state/api";
 import Layout from "./scenes/Layout";
 import Dashboard from "./scenes/Dashboard";
 import PropertyList from "./scenes/Properties";
+import Property from "./scenes/Property";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -63,6 +64,10 @@ const App = () => {
             <Route
               path="/dashboard"
               element={<Dashboard properties={properties || []} />}
+            />
+            <Route
+              path="/properties/:id"
+              element={<Property properties={properties || []} />}
             />
           </Route>
         </Routes>

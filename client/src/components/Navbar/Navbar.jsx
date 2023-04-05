@@ -1,24 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { 
+import React, { useState, useEffect } from "react";
+import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
-  Search, 
+  Search,
   SettingsOutlined,
-  ArrowDropDownOutlined
-} from '@mui/icons-material';
-import FlexContainer from '../FlexContainer';
-import { useDispatch } from 'react-redux';
-import { setMode } from '../../state'
-import { AppBar, Box, Button, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography, useTheme } from '@mui/material';
+  ArrowDropDownOutlined,
+} from "@mui/icons-material";
+import FlexContainer from "../FlexContainer";
+import { useDispatch } from "react-redux";
+import { setMode } from "../../state";
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  InputBase,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
-  const dispatch = useDispatch()
-  const theme = useTheme()
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [anchorEl, setAnchorEl] = useState(false);
   const isOpen = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,21 +49,23 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
     setIsScrolling(positionY > 0);
   };
 
-// Add event listener for scroll events
+  // Add event listener for scroll events
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <AppBar sx={{
-      position: 'sticky',
-      background: isScrolling ? 'black' : 'transparent',
-      boxShadow: 'none',
-      transition: 'all 0.3s ease-in-out',
-    }}>
+    <AppBar
+      sx={{
+        position: "sticky",
+        background: isScrolling ? "black" : "transparent",
+        boxShadow: "none",
+        transition: "all 0.3s ease-in-out",
+      }}
+    >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* Left Side */}
         <FlexContainer>
@@ -70,52 +85,58 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
           </FlexContainer>
         </FlexContainer>
         {/* Right Side */}
-        <FlexContainer gap='1.5rem'>
+        <FlexContainer gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === 'dark' ? (
-              <DarkModeOutlined sx={{ fontSize: '25px' }} />
+            {theme.palette.mode === "dark" ? (
+              <DarkModeOutlined sx={{ fontSize: "25px" }} />
             ) : (
-              <LightModeOutlined sx={{ fontSize: '25px' }} />
+              <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
           </IconButton>
           <IconButton>
-            <SettingsOutlined sx={{ fontSize: '25px' }} />
+            <SettingsOutlined sx={{ fontSize: "25px" }} />
           </IconButton>
-          <FlexContainer sx={{ display: 'flex' }}>
-            <Button onClick={handleClick}
-              sx={{ 
-                display: 'flex',
-                justifyContent:'space-between',
-                alignItems: 'center',
-                textTransform: 'none',
-                gap: '0.5rem',
+          <FlexContainer sx={{ display: "flex" }}>
+            <Button
+              onClick={handleClick}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                textTransform: "none",
+                gap: "0.5rem",
               }}
             >
               <Box
-                component='img'
+                component="img"
                 src={user.photo}
-                height='30px'
-                width='30px'
-                borderRadius='50%'
-                sx={{ objectFit: 'cover' }}
+                height="30px"
+                width="30px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
               />
-              <Box textAlign='left'>
+              <Box
+                textAlign="left"
+                sx={{
+                  display: isMobile ? "none" : "block",
+                }}
+              >
                 <Typography
-                  fontWeight='bold'
-                  fontSize='0.85rem'
+                  fontWeight="bold"
+                  fontSize="0.85rem"
                   sx={{ color: theme.palette.primary[50] }}
                 >
                   {user.name}
                 </Typography>
                 <Typography
-                  fontSize='0.75rem'
+                  fontSize="0.75rem"
                   sx={{ color: theme.palette.primary[50] }}
                 >
                   {user.email}
                 </Typography>
               </Box>
               <ArrowDropDownOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: '25px'}}
+                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
               />
             </Button>
             <Menu
@@ -126,30 +147,30 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
               PaperProps={{
                 elevation: 0,
                 sx: {
-                  overflow: 'visible',
-                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                  '& .MuiAvatar-root': {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  "& .MuiAvatar-root": {
                     width: 32,
                     height: 32,
                     ml: -0.5,
                     mr: 1,
                   },
-                  '&:before': {
+                  "&:before": {
                     content: '""',
-                    display: 'block',
-                    position: 'absolute',
+                    display: "block",
+                    position: "absolute",
                     top: 0,
                     right: 14,
                     width: 10,
                     height: 10,
-                    bgcolor: 'background.paper',
-                    transform: 'translateY(-50%) rotate(45deg)',
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
                     zIndex: 0,
                   },
                 },
               }}
-              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>Logout</MenuItem>

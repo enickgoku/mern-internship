@@ -17,6 +17,7 @@ app.use(express.json());
 app.use("/clients", clientRouter);
 app.use("/user", userRouter);
 app.use("/properties", propertyRouter);
+app.use("properties/:id", propertyRouter);
 app.use("/db/seeders/assets", express.static("db/seeders/assets"));
 
 app.use(notFound);
