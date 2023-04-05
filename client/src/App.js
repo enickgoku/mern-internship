@@ -39,9 +39,11 @@ const App = () => {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     setUser(userData);
     fetchClients();
     fetchProperties();
+    return () => abortController.abort();
   }, [userData]);
 
   if (!userData) {

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Box, IconButton } from '@mui/material';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { motion } from 'framer-motion';
-import { useTheme } from '@mui/material';
+import { useState, useEffect } from "react";
+import { Box, IconButton } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { motion } from "framer-motion";
+import { useTheme } from "@mui/material";
 
 const variants = {
   enter: (direction) => {
     return {
-      x: direction === 'left' ? '-100%' : '100%',
+      x: direction === "left" ? "-100%" : "100%",
       opacity: 0,
     };
   },
@@ -18,7 +18,7 @@ const variants = {
   },
   exit: (direction) => {
     return {
-      x: direction === 'left' ? '100%' : '-100%',
+      x: direction === "left" ? "100%" : "-100%",
       opacity: 0,
     };
   },
@@ -48,16 +48,16 @@ export default function Slideshow({ photos }) {
 
   const handlePrevClick = () => {
     setCurrentIndex((currentIndex - 1 + photos.length) % photos.length);
-    setDirection('left');
+    setDirection("left");
   };
 
   const handleNextClick = () => {
     setCurrentIndex((currentIndex + 1) % photos.length);
-    setDirection('right');
+    setDirection("right");
   };
 
   return (
-    <Box sx={{ position: 'relative' }}>
+    <Box sx={{ position: "relative" }}>
       {loaded && (
         <motion.img
           key={currentIndex}
@@ -74,13 +74,25 @@ export default function Slideshow({ photos }) {
         />
       )}
       <IconButton
-        sx={{ backgroundColor: theme.palette.secondary[800], position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
+        sx={{
+          backgroundColor: theme.palette.secondary[800],
+          position: "absolute",
+          top: "50%",
+          left: 0,
+          transform: "translateY(-50%)",
+        }}
         onClick={handlePrevClick}
       >
         <ChevronLeftIcon />
       </IconButton>
       <IconButton
-        sx={{ backgroundColor: theme.palette.secondary[800], position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
+        sx={{
+          backgroundColor: theme.palette.secondary[800],
+          position: "absolute",
+          top: "50%",
+          right: 0,
+          transform: "translateY(-50%)",
+        }}
         onClick={handleNextClick}
       >
         <ChevronRightIcon />
