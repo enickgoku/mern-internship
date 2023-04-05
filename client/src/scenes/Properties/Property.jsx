@@ -17,6 +17,9 @@ const PropertyCard = ({ property }) => {
           justifyContent: 'space-between',
         }}>
           <Typography variant="body2" color="text.secondary">
+            $ {property.price}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
             {address.city}, {address.state}, {address.zip}
           </Typography>
           <Typography variant="body2" color="text.secondary">

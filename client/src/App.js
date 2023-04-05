@@ -56,11 +56,11 @@ const App = () => {
           <Route element={<Layout user={user || {}} />}>
             <Route
               path="/"
-              element={<PropertyList properties={properties} />}
+              element={<PropertyList properties={properties || []} />}
             />
             <Route
               path="/dashboard"
-              element={<Dashboard properties={properties} />}
+              element={<Dashboard properties={properties || []} />}
             />
           </Route>
         </Routes>
