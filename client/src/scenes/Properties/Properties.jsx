@@ -36,9 +36,12 @@ const PropertyCard = ({ property }) => {
         },
         textOverflow: "ellipsis",
       }}
-      onClick={() => navigate(`/properties/${_id}`)}
     >
-      <CardHeader title={address.street} subheader={homeType} />
+      <CardHeader
+        title={address.street}
+        subheader={homeType}
+        onClick={() => navigate(`/properties/${_id}`)}
+      />
       <Box
         sx={{
           display: "flex",
@@ -47,7 +50,7 @@ const PropertyCard = ({ property }) => {
       >
         <SlideShow photos={photos} id={_id} />
       </Box>
-      <CardContent>
+      <CardContent onClick={() => navigate(`/properties/${_id}`)}>
         <Box
           sx={{
             display: "flex",

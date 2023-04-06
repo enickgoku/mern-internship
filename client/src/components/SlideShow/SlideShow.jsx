@@ -28,12 +28,10 @@ export default function Slideshow({ photos = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [propertyPhotos, setPhotos] = useState(photos); // [photo1, photo2, photo3
   const theme = useTheme();
-
   const isExtraSmall = useMediaQuery(theme.breakpoints.up("sm"));
   useEffect(() => {
-    const imagePromises = propertyPhotos.map((photo) => {
+    const imagePromises = photos.map((photo) => {
       return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
@@ -45,9 +43,8 @@ export default function Slideshow({ photos = [] }) {
 
     Promise.all(imagePromises).then(() => {
       setLoaded(true);
-      setPhotos(propertyPhotos);
     });
-  }, [photos, propertyPhotos]);
+  }, [photos]);
 
   const handlePrevClick = () => {
     setCurrentIndex((currentIndex - 1 + photos.length) % photos.length);
@@ -64,7 +61,7 @@ export default function Slideshow({ photos = [] }) {
       {loaded && (
         <motion.img
           key={currentIndex}
-          src={propertyPhotos[currentIndex]}
+          src={photos[currentIndex]}
           alt=""
           initial="enter"
           animate="center"
