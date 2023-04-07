@@ -26,18 +26,35 @@ const Property = ({ properties = [], clients = [] }) => {
 
   return (
     <Grid container direction="column">
-      <Grid item>
-        <Box display="flex" justifyContent="center">
+      <Grid
+        item
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box display="flex" width="800px">
           <SlideShow photos={propertyPhotos || []} id={id} />
         </Box>
       </Grid>
       <Grid
         container
-        item
         direction={isNonMediumScreen ? "column" : "row"}
         justifyContent="flex-start"
       >
-        <Grid item xs={12} md={6} direction="column">
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: { xs: "center", md: "flex-start" },
+            width: { xs: "100%", md: "50%" },
+          }}
+        >
           <Infobox
             properties={properties || []}
             id={id}

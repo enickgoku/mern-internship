@@ -70,15 +70,15 @@ const List = ({ properties = [], clients = [], id }) => {
         }}
       >
         <Typography
-          fontSize="1.75rem"
+          fontSize="1.25rem"
           variant="bold"
-          sx={{ color: theme.palette.primary[50] }}
+          sx={{ color: theme.palette.primary[55] }}
         >
-          MLS#:
+          MLS#:{" "}
         </Typography>
         <Typography
-          fontSize="1.75rem"
-          sx={{ color: theme.palette.primary[50] }}
+          fontSize="1.25rem"
+          sx={{ color: theme.palette.primary[55] }}
         >
           {property?.mlsNumber}
         </Typography>
@@ -97,9 +97,9 @@ const Infobox = ({ properties = [], clients = [], id: propertyId }) => {
       sx={{
         color: theme.palette.primary[400],
         margin: "1rem",
-        border: `2px solid ${theme.palette.primary[400]}`,
         width: "286px",
         height: "564px",
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
       }}
     >
       <List properties={properties} clients={clients} id={propertyId} />
