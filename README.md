@@ -4,7 +4,7 @@ This Project was created for the purpose of serving as an application for a MERN
 
 ## Available Scripts
 
-To start this project you will need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/download/). You will need to have yarn installed on your machine. You can download it from [here](https://classic.yarnpkg.com/en/docs/install/#mac-stable). You will need to have MongoDB installed on your machine. You can download it from [here](https://www.mongodb.com/try/download/community). You will need to have the Mongo Shell installed on your machine. You can download it from [here](https://docs.mongodb.com/manual/mongo/).
+To start this project you will need to have Node.js installed on your machine. You can download it from [here](https://nodejs.org/en/download/). You will need to have yarn installed on your machine. You can download it from [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable). You will need to have MongoDB installed on your machine. You can download it from [here](https://www.mongodb.com/try/download/community). You will need to have the Mongo Shell installed on your machine. You can download it from [here](https://www.mongodb.com/docs/v4.4/mongo/).
 
 ## From the command line run the following commands:
 
