@@ -7,18 +7,33 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import FlexContainer from "../FlexContainer";
+// ICONS
+import MapIcon from "@mui/icons-material/Map";
+import DirectionsIcon from "@mui/icons-material/Directions";
+import ShareIcon from "@mui/icons-material/Share";
+import NotesIcon from "@mui/icons-material/Notes";
+import MailIcon from "@mui/icons-material/Mail";
 
 const List = ({ properties = [], clients = [], id }) => {
   const theme = useTheme();
   const property = properties.find((property) => property._id === id);
-  const client = clients.find((client) => client._id === property?.client);
+  const client = clients.find((client) =>
+    property?.client.includes(client._id)
+  );
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const addCommasToPrice = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
   useEffect(() => {
     if (!property) return;
     if (!client) return;
   }, [client, property]);
+
+  const { address } = property;
+  const { street, city, state, zip } = address;
+  const { name, email, phone, state: clientState } = client;
 
   return (
     <Box
@@ -45,6 +60,9 @@ const List = ({ properties = [], clients = [], id }) => {
             backgroundColor: theme.palette.secondary[600],
             borderRadius: "0.5rem",
             margin: "0.5rem",
+            "&:hover": {
+              backgroundColor: theme.palette.secondary[700],
+            },
           }}
         >
           For Sale
@@ -56,6 +74,9 @@ const List = ({ properties = [], clients = [], id }) => {
             borderRadius: "0.5rem",
             margin: "0.5rem",
             width: "150px",
+            "&:hover": {
+              backgroundColor: theme.palette.secondary[700],
+            },
           }}
         >
           Add List
@@ -64,24 +85,214 @@ const List = ({ properties = [], clients = [], id }) => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
+          flexDirection: "column",
           marginLeft: "0.5rem",
         }}
       >
-        <Typography
-          fontSize="1.25rem"
-          variant="bold"
-          sx={{ color: theme.palette.primary[55] }}
+        <Box
+          sx={{
+            display: "flex",
+          }}
         >
-          MLS#:{" "}
+          <Typography
+            fontSize="1.25rem"
+            variant="bold"
+            sx={{ color: theme.palette.primary[55] }}
+          >
+            MLS#:{" "}
+          </Typography>
+          <Typography
+            fontSize="1.25rem"
+            sx={{ color: theme.palette.primary[55] }}
+          >
+            {property?.mlsNumber}
+          </Typography>
+        </Box>
+        <Typography
+          sx={{
+            marginTop: "0.2rem",
+          }}
+        >
+          Listed for:{" "}
+          {property?.price ? `$${addCommasToPrice(property.price)}` : "N/A"}
         </Typography>
         <Typography
-          fontSize="1.25rem"
-          sx={{ color: theme.palette.primary[55] }}
+          fontSize="1.5rem"
+          sx={{
+            marginTop: "0.2rem",
+          }}
         >
-          {property?.mlsNumber}
+          {street}, {city}, {state}, {zip}
         </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "90%",
+            height: "35px",
+            border: `2px solid ${theme.palette.primary[400]}`,
+            borderRadius: "0.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Button
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexGrow: 1,
+            }}
+          >
+            <MapIcon />
+            <Typography
+              sx={{
+                marginLeft: "0.5rem",
+              }}
+            >
+              View on Map
+            </Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "90%",
+            height: "35px",
+            border: `2px solid ${theme.palette.primary[400]}`,
+            borderRadius: "0.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Button
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexGrow: 1,
+            }}
+          >
+            <DirectionsIcon />
+            <Typography
+              sx={{
+                marginLeft: "0.5rem",
+              }}
+            >
+              Directions
+            </Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "90%",
+            height: "35px",
+            border: `2px solid ${theme.palette.primary[400]}`,
+            borderRadius: "0.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Button
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexGrow: 1,
+            }}
+          >
+            <ShareIcon />
+            <Typography
+              sx={{
+                marginLeft: "0.5rem",
+              }}
+            >
+              Share
+            </Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "90%",
+            border: `2px solid ${theme.palette.primary[400]}`,
+            borderRadius: "0.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          <Button
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              flexGrow: 1,
+            }}
+          >
+            <NotesIcon />
+            <Typography
+              sx={{
+                marginLeft: "0.5rem",
+              }}
+            >
+              Notes
+            </Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            width: "90%",
+            height: "70px",
+            backgroundColor: theme.palette.grey[300],
+            borderRadius: "0.5rem",
+            marginTop: "8rem",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              marginLeft: "0.5rem",
+            }}
+          >
+            <Typography>Listing Agent</Typography>
+            <Typography>{name}</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <Typography>{phone}</Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginLeft: "2rem",
+                }}
+              >
+                <Button
+                  sx={{
+                    flexGrow: 1,
+                  }}
+                >
+                  <MailIcon />
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
