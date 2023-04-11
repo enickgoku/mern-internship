@@ -6,6 +6,7 @@ import {
   Search,
   SettingsOutlined,
   ArrowDropDownOutlined,
+  Troubleshoot,
 } from "@mui/icons-material";
 import FlexContainer from "../FlexContainer";
 import { useDispatch } from "react-redux";
@@ -44,26 +45,34 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
 
   const [isScrolling, setIsScrolling] = useState(false);
 
-  const handleScroll = () => {
-    const positionY = window.scrollY;
-    setIsScrolling(positionY > 0);
-  };
+  // const handleScroll = () => {
+  //   console.log("handleScroll called");
+  //   const positionY = window.scrollY;
+  //   if (positionY > 0) {
+  //     setIsScrolling(true);
+  //   } else {
+  //     setIsScrolling(false);
+  //   }
+  // };
 
-  // Add event listener for scroll events
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // // Add event listener for scroll events
+  // useEffect(() => {
+  //   if (window.scrollY > 0) {
+  //     setIsScrolling(true);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
     <AppBar
       sx={{
         position: "sticky",
-        background: isScrolling ? "black" : "transparent",
+        backgroundColor: `${theme.palette.primary[500]} !important`,
         boxShadow: "none",
         transition: "all 0.3s ease-in-out",
+        width: "100%",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -85,7 +94,12 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
           </FlexContainer>
         </FlexContainer>
         {/* Right Side */}
-        <FlexContainer gap="1.5rem">
+        <FlexContainer
+          gap="1.5rem"
+          sx={{
+            display: "flex",
+          }}
+        >
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined sx={{ fontSize: "25px" }} />

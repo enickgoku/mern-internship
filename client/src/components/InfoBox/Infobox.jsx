@@ -31,7 +31,7 @@ const List = ({ properties = [], clients = [], id }) => {
     if (!client) return;
   }, [client, property]);
 
-  const { address } = property;
+  const { address = {} } = property;
   const { street, city, state, zip } = address;
   const { name, email, phone, state: clientState } = client;
 
@@ -40,8 +40,8 @@ const List = ({ properties = [], clients = [], id }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: "100%",
         height: "100%",
+        width: "100%",
         backgroundColor: theme.palette.grey[50],
         borderRadius: "0.5rem",
       }}

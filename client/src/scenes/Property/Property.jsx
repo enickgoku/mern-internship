@@ -10,11 +10,12 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Infobox from "../../components/InfoBox";
+import KeyDetails from "../../components/KeyDetails";
 import SlideShow from "../../components/SlideShow";
 
 const Property = ({ properties = [], clients = [] }) => {
   const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
-  const { id } = useParams();
+  const { id } = useParams(); // id is the property id
   const currentProperty = properties.find((property) => property._id === id);
   const [propertyPhotos, setPhotos] = useState([]);
 
@@ -25,44 +26,91 @@ const Property = ({ properties = [], clients = [] }) => {
   }, [currentProperty]);
 
   return (
-    <Grid container direction="column">
-      <Grid
-        item
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Box display="flex" width="800px">
-          <SlideShow photos={propertyPhotos || []} id={id} />
-        </Box>
-      </Grid>
-      <Grid
-        container
-        direction={isNonMediumScreen ? "column" : "row"}
-        justifyContent="flex-start"
-      >
-        <Grid
-          item
-          xs={12}
-          md={6}
+        <Box
+          width={{ xs: "100%", md: "800px" }}
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: { xs: "center", md: "flex-start" },
-            width: { xs: "100%", md: "50%" },
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Infobox
-            properties={properties || []}
-            id={id}
-            clients={clients || []}
-          />
-        </Grid>
-      </Grid>
-    </Grid>
+          <SlideShow photos={propertyPhotos || []} id={id} />
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <Box
+          direction={{ xs: "column", md: isNonMediumScreen ? "column" : "row" }}
+          maxWidth={false}
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: isNonMediumScreen ? "1fr" : "1fr 1fr",
+            },
+            gridGap: "1rem",
+            width: "100%",
+            maxWidth: "70%",
+          }}
+        >
+          <Box
+            xs={12}
+            md={6}
+            direction="column"
+            maxWidth={false}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: { xs: "center", md: "flex-start" },
+              width: { xs: "100%", md: "50%" },
+            }}
+          >
+            <Infobox
+              properties={properties || []}
+              id={id}
+              clients={clients || []}
+            />
+          </Box>
+          <Box
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: { xs: "center", md: "flex-start" },
+              width: { xs: "100%", md: "100%" },
+            }}
+          >
+            <KeyDetails
+              properties={properties || []}
+              id={id}
+              clients={clients || []}
+            />
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
