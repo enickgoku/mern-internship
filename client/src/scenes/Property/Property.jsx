@@ -17,10 +17,14 @@ const Property = ({ properties = [], clients = [] }) => {
   const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
   const { id } = useParams(); // id is the property id
   const currentProperty = properties.find((property) => property._id === id);
+  const currentClient = clients.find((client) =>
+    currentProperty?.client.includes(client._id)
+  );
   const [propertyPhotos, setPhotos] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
-    if (!currentProperty) return;
+    if (!currentProperty) return <p>Loading...</p>;
     const { photos } = currentProperty;
     setPhotos(photos);
   }, [currentProperty]);
@@ -62,7 +66,6 @@ const Property = ({ properties = [], clients = [] }) => {
       >
         <Box
           direction={{ xs: "column", md: isNonMediumScreen ? "column" : "row" }}
-          maxWidth={false}
           sx={{
             display: "grid",
             gridTemplateColumns: {
@@ -78,10 +81,11 @@ const Property = ({ properties = [], clients = [] }) => {
             xs={12}
             md={6}
             direction="column"
-            maxWidth={false}
+            // maxWidth={false}
             sx={{
               display: "flex",
               flexDirection: "column",
+              justifyContent: "center",
               alignItems: { xs: "center", md: "flex-start" },
               width: { xs: "100%", md: "50%" },
             }}
@@ -100,10 +104,14 @@ const Property = ({ properties = [], clients = [] }) => {
               flexDirection: "column",
               alignItems: { xs: "center", md: "flex-start" },
               width: { xs: "100%", md: "100%" },
+              backgroundColor: theme.palette.grey[50],
+              color: theme.palette.grey[900],
+              border: "1px solid black",
+              borderRadius: "0.5rem",
             }}
           >
             <KeyDetails
-              properties={properties || []}
+              property={currentProperty || []}
               id={id}
               clients={clients || []}
             />

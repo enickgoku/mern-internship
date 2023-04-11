@@ -17,9 +17,10 @@ import MailIcon from "@mui/icons-material/Mail";
 const List = ({ properties = [], clients = [], id }) => {
   const theme = useTheme();
   const property = properties.find((property) => property._id === id);
-  const client = clients.find((client) =>
-    property?.client.includes(client._id)
-  );
+  const client = clients.length
+    ? clients.find((client) => property?.client.includes(client._id))
+    : null;
+
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const addCommasToPrice = (num) => {
@@ -31,26 +32,28 @@ const List = ({ properties = [], clients = [], id }) => {
     if (!client) return;
   }, [client, property]);
 
-  const { address = {} } = property;
+  const address = property && property.address ? property.address : [];
   const { street, city, state, zip } = address;
-  const { name, email, phone, state: clientState } = client;
+  const { name = "", email = "", phone = "", state: clientState = "" } = client;
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
         height: "100%",
         width: "100%",
-        backgroundColor: theme.palette.grey[50],
         borderRadius: "0.5rem",
+        backgroundColor: theme.palette.grey[50],
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
