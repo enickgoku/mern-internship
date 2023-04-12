@@ -12,6 +12,7 @@ import {
 import Infobox from "../../components/InfoBox";
 import KeyDetails from "../../components/KeyDetails";
 import SlideShow from "../../components/SlideShow";
+import SummaryBar from "../../components/SummaryBar";
 
 const Property = ({ properties = [], clients = [] }) => {
   const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
@@ -24,7 +25,7 @@ const Property = ({ properties = [], clients = [] }) => {
   const theme = useTheme();
 
   useEffect(() => {
-    if (!currentProperty) return <p>Loading...</p>;
+    if (!currentProperty) return;
     const { photos } = currentProperty;
     setPhotos(photos);
   }, [currentProperty]);
@@ -53,17 +54,15 @@ const Property = ({ properties = [], clients = [] }) => {
             }}
           >
             <Infobox
-              properties={properties || []}
+              property={currentProperty || []}
               id={id}
-              clients={clients || []}
+              client={currentClient || []}
             />
           </Grid>
         </Grid>
         <Grid item xs={12} md={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h4" component="h1">
-              bar above key details
-            </Typography>
+            <SummaryBar />
           </Grid>
           <Grid
             item

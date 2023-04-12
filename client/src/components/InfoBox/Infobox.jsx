@@ -14,18 +14,8 @@ import ShareIcon from "@mui/icons-material/Share";
 import NotesIcon from "@mui/icons-material/Notes";
 import MailIcon from "@mui/icons-material/Mail";
 
-const List = ({ properties = [], clients = [], id }) => {
-  useEffect(() => {
-    console.log("properties", properties);
-    console.log("clients", clients);
-    if (!properties.length || !clients.length) return;
-  }, [properties, clients]);
-
+const List = ({ property = [], client = [], id }) => {
   const theme = useTheme();
-  const property = properties.find((property) => property._id === id);
-  const client = clients.length
-    ? clients.find((client) => property?.client.includes(client._id))
-    : null;
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -35,14 +25,9 @@ const List = ({ properties = [], clients = [], id }) => {
 
   if (!property || !client) return <p>Loading...</p>;
 
-  const address = property?.address ?? {};
+  const address = property?.address ?? [];
   const { street = "", city = "", state = "", zip = "" } = address;
-  const {
-    name = "",
-    email = "",
-    phone = "",
-    state: clientState = "",
-  } = client ?? {};
+  const { name = "", email = "", phone = "", state: clientState = "" } = client;
 
   return (
     <Box
@@ -309,7 +294,7 @@ const List = ({ properties = [], clients = [], id }) => {
   );
 };
 
-const Infobox = ({ properties = [], clients = [], id: propertyId }) => {
+const Infobox = ({ property = [], client = [], id: propertyId }) => {
   const theme = useTheme();
 
   return (
@@ -324,7 +309,7 @@ const Infobox = ({ properties = [], clients = [], id: propertyId }) => {
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
       }}
     >
-      <List properties={properties} clients={clients} id={propertyId} />
+      <List property={property} client={client} id={propertyId} />
     </Grid>
   );
 };
