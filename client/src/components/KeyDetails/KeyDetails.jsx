@@ -46,6 +46,8 @@ const TabKeyFacts = ({ property }) => {
     mlsNumber,
   } = property;
 
+  console.log(property);
+
   return (
     <>
       <Typography>
@@ -60,10 +62,89 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography>Tax:</Typography>
-        <Typography>${taxes} / 2022</Typography>
+        <Typography fontSize="1.25rem">Tax:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          ${taxes} / 2022
+        </Typography>
       </Grid>
       <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">Type:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          {homeType}
+        </Typography>
+      </Grid>
+      <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">Building Age:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          {buildingAge} Years
+        </Typography>
+      </Grid>
+      <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">Size:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          {squareFootage}
+        </Typography>
+      </Grid>
+      <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">Garage Type / Spaces:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          {parking.garageType} / {parking.garageSpaces}
+        </Typography>
+      </Grid>
+      <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">Basement / Sqft:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          {basement.type} / {basement.squareFootage}
+        </Typography>
+      </Grid>
+      <Divider sx={{ height: 2, backgroundColor: "grey" }} />
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Typography fontSize="1.25rem">MLS Number:</Typography>
+        <Typography fontSize="1.25rem" fontStyle="bold">
+          # {mlsNumber}
+        </Typography>
+      </Grid>
     </>
   );
 };

@@ -13,6 +13,7 @@ import Infobox from "../../components/InfoBox";
 import KeyDetails from "../../components/KeyDetails";
 import SlideShow from "../../components/SlideShow";
 import SummaryBar from "../../components/SummaryBar";
+import Shortcuts from "../../components/Shortcuts";
 
 const Property = ({ properties = [], clients = [] }) => {
   const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
@@ -60,9 +61,19 @@ const Property = ({ properties = [], clients = [] }) => {
             />
           </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Grid item xs={12} md={4}>
-            <SummaryBar />
+        <Grid item xs={12} sm={4}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            sx={{
+              backgroundColor: theme.palette.primary[50],
+              color: theme.palette.primary[900],
+              border: "1px solid black",
+              borderRadius: "0.5rem",
+            }}
+          >
+            <SummaryBar property={currentProperty || []} id={id} />
           </Grid>
           <Grid
             item
@@ -85,9 +96,7 @@ const Property = ({ properties = [], clients = [] }) => {
         <Grid item xs={12} md={4}>
           <Grid item container sx={{ width: "100%" }}>
             <Grid item>
-              <Typography variant="h4" component="h1">
-                Styling
-              </Typography>
+              <Shortcuts />
             </Grid>
           </Grid>
         </Grid>

@@ -27,7 +27,12 @@ const List = ({ property = [], client = [], id }) => {
 
   const address = property?.address ?? [];
   const { street = "", city = "", state = "", zip = "" } = address;
-  const { name = "", email = "", phone = "", state: clientState = "" } = client;
+  const {
+    name = "",
+    email = "",
+    phone = "",
+    state: clientState = "",
+  } = client ?? {};
 
   return (
     <Box
