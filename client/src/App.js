@@ -66,10 +66,6 @@ const App = () => {
               path="/"
               element={<PropertyList properties={properties || []} />}
             />
-            {/* <Route
-              path="/dashboard"
-              element={<Dashboard properties={properties || []} />}
-            /> */}
             <Route
               path="/properties/:id"
               element={

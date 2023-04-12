@@ -15,6 +15,12 @@ import NotesIcon from "@mui/icons-material/Notes";
 import MailIcon from "@mui/icons-material/Mail";
 
 const List = ({ properties = [], clients = [], id }) => {
+  useEffect(() => {
+    console.log("properties", properties);
+    console.log("clients", clients);
+    if (!properties.length || !clients.length) return;
+  }, [properties, clients]);
+
   const theme = useTheme();
   const property = properties.find((property) => property._id === id);
   const client = clients.length
@@ -27,14 +33,16 @@ const List = ({ properties = [], clients = [], id }) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  useEffect(() => {
-    if (!property) return;
-    if (!client) return;
-  }, [client, property]);
+  if (!property || !client) return <p>Loading...</p>;
 
-  const address = property && property.address ? property.address : [];
-  const { street, city, state, zip } = address;
-  const { name = "", email = "", phone = "", state: clientState = "" } = client;
+  const address = property?.address ?? {};
+  const { street = "", city = "", state = "", zip = "" } = address;
+  const {
+    name = "",
+    email = "",
+    phone = "",
+    state: clientState = "",
+  } = client ?? {};
 
   return (
     <Box

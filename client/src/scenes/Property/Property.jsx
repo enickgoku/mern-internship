@@ -30,64 +30,26 @@ const Property = ({ properties = [], clients = [] }) => {
   }, [currentProperty]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    <Grid
+      container
+      spacing={2}
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Box
-          width={{ xs: "100%", md: "800px" }}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+      <Grid item xs={12} sm={6}>
+        <Grid item sx={{ width: { xs: "100%", sm: "800px" } }}>
           <SlideShow photos={propertyPhotos || []} id={id} />
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <Box
-          direction={{ xs: "column", md: isNonMediumScreen ? "column" : "row" }}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              md: isNonMediumScreen ? "1fr" : "1fr 1fr",
-            },
-            gridGap: "1rem",
-            width: "100%",
-            maxWidth: "70%",
-          }}
-        >
-          <Box
-            xs={12}
-            md={6}
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={6} container spacing={3}>
+        <Grid item xs={12} md={4}>
+          <Grid
+            container
             direction="column"
-            // maxWidth={false}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: { xs: "center", md: "flex-start" },
-              width: { xs: "100%", md: "50%" },
+              alignItems: isNonMediumScreen ? "flex-start" : "center",
+              width: "100%",
             }}
           >
             <Infobox
@@ -95,19 +57,23 @@ const Property = ({ properties = [], clients = [] }) => {
               id={id}
               clients={clients || []}
             />
-          </Box>
-          <Box
-            xs={12}
-            md={6}
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h4" component="h1">
+              bar above key details
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            direction="column"
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: { xs: "center", md: "flex-start" },
-              width: { xs: "100%", md: "100%" },
               backgroundColor: theme.palette.grey[50],
               color: theme.palette.grey[900],
               border: "1px solid black",
               borderRadius: "0.5rem",
+              width: "100%",
             }}
           >
             <KeyDetails
@@ -115,10 +81,19 @@ const Property = ({ properties = [], clients = [] }) => {
               id={id}
               clients={clients || []}
             />
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Grid item container sx={{ width: "100%" }}>
+            <Grid item>
+              <Typography variant="h4" component="h1">
+                Styling
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

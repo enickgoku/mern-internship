@@ -12,12 +12,11 @@ const DetailsSection = ({ property = [], clients = [], id }) => {
   };
 
   return (
-    <Box
+    <Grid
+      item
+      container
       sx={{
-        display: "flex",
-        flexDirection: "column",
         width: "100%",
-        height: "100%",
       }}
     >
       <Tabs
@@ -32,17 +31,7 @@ const DetailsSection = ({ property = [], clients = [], id }) => {
       <TabPanel value={value} index={0}>
         <TabKeyFacts property={property} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Box>
-          <TabKeyDetails />
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Box>
-          <TabRooms />
-        </Box>
-      </TabPanel>
-    </Box>
+    </Grid>
   );
 };
 
@@ -58,33 +47,24 @@ const TabKeyFacts = ({ property }) => {
   } = property;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        textAlign: "center",
-      }}
-    >
+    <>
       <Typography>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio non,
         dolorem dolore dolores quia quam totam odit! Veniam incidunt esse labore
         odio iste, laborum dolor ratione consectetur quia minus libero.
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
+      <Grid
+        item
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
       >
         <Typography>Tax:</Typography>
         <Typography>${taxes} / 2022</Typography>
-      </Box>
+      </Grid>
       <Divider sx={{ height: 2, backgroundColor: "grey" }} />
-    </Box>
+    </>
   );
 };
 
@@ -98,21 +78,14 @@ const TabRooms = () => {
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
-  return <Box hidden={value !== index}>{children}</Box>;
+  return <div hidden={value !== index}>{children}</div>;
 };
 
 const KeyDetails = ({ id, property = [], clients = [] }) => {
   return (
-    <Box
-      sx={{
-        margin: "1rem",
-        width: "400px",
-        height: "564px",
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-      }}
-    >
+    <>
       <DetailsSection property={property} clients={clients} id={id} />
-    </Box>
+    </>
   );
 };
 
