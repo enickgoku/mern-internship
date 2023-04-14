@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import SwitchUnstyled, {
   switchUnstyledClasses,
@@ -93,10 +93,19 @@ const Root = styled("span")(
 
 const Shortcuts = () => {
   const label = { slotProps: { input: { "aria-label": "Demo switch" } } };
+  const theme = useTheme();
+  const [activeSelector, setActiveSelector] = useState(0);
+
+  const handleSelector = (index) => {
+    setActiveSelector(index);
+  };
+
   return (
     <Grid container direction="column" alignItems="center">
       <Grid item>
-        <Typography variant="h6">Shortcuts</Typography>
+        <Typography variant="h5" fontStyle="bold" fontSize="1.5rem">
+          Shortcuts
+        </Typography>
       </Grid>
       <Grid item container direction="row" alignItems="center">
         <Grid item>
@@ -106,27 +115,96 @@ const Shortcuts = () => {
           <SwitchUnstyled component={Root} {...label} />
         </Grid>
       </Grid>
+      {/* Buttons */}
       <Grid item container direction="column" alignItems="center">
-        <Grid item>
+        <Grid
+          item
+          container
+          direction="row"
+          sx={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            cursor: "pointer",
+            marginTop: "10px",
+            backgroundColor:
+              activeSelector === 0
+                ? `${theme.palette.secondary[100]}`
+                : `${theme.palette.primary[50]}`,
+          }}
+          onClick={() => handleSelector(0)}
+        >
           <KeyIcon />
           <Typography variant="h6">Key Facts</Typography>
         </Grid>
       </Grid>
       <Grid item container direction="column" alignItems="center">
-        <Grid item>
+        <Grid
+          item
+          container
+          direction="row"
+          sx={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            cursor: "pointer",
+            marginTop: "10px",
+            backgroundColor:
+              activeSelector === 1
+                ? `${theme.palette.secondary[100]}`
+                : `${theme.palette.primary[50]}`,
+          }}
+          onClick={() => handleSelector(1)}
+        >
           <HistoryIcon />
           <Typography variant="h6">Property History</Typography>
         </Grid>
       </Grid>
       <Grid item container direction="column" alignItems="center">
-        <Grid item>
+        <Grid
+          item
+          container
+          direction="row"
+          sx={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            cursor: "pointer",
+            marginTop: "10px",
+            backgroundColor:
+              activeSelector === 2
+                ? `${theme.palette.secondary[100]}`
+                : `${theme.palette.primary[50]}`,
+          }}
+          onClick={() => handleSelector(2)}
+        >
           <DataUsageIcon />
           <Typography variant="h6">Demographics</Typography>
         </Grid>
       </Grid>
       <Grid item container direction="column" alignItems="center">
-        <Grid item>
-          <GpsNotFixedIcon />
+        <Grid
+          item
+          container
+          direction="row"
+          sx={{
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            cursor: "pointer",
+            marginTop: "10px",
+            backgroundColor:
+              activeSelector === 3
+                ? `${theme.palette.secondary[100]}`
+                : `${theme.palette.primary[50]}`,
+          }}
+          onClick={() => handleSelector(3)}
+        >
+          <GpsNotFixedIcon
+            sx={{
+              marginRight: "5px",
+            }}
+          />
           <Typography variant="h6">Points of Interest</Typography>
         </Grid>
       </Grid>
