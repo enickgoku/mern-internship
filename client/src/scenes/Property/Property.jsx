@@ -1,14 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import {
-  Box,
-  Button,
-  Typography,
-  Grid,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Grid, useTheme, useMediaQuery } from "@mui/material";
 import Infobox from "../../components/InfoBox";
 import KeyDetails from "../../components/KeyDetails";
 import SlideShow from "../../components/SlideShow";
@@ -27,9 +20,10 @@ const Property = ({ properties = [], clients = [] }) => {
 
   useEffect(() => {
     if (!currentProperty) return;
+    if (!propertyPhotos) return;
     const { photos } = currentProperty;
     setPhotos(photos);
-  }, [currentProperty]);
+  }, [currentProperty, propertyPhotos]);
 
   return (
     <Grid
@@ -81,6 +75,7 @@ const Property = ({ properties = [], clients = [] }) => {
           </Grid>
           <Grid
             item
+            container
             direction="column"
             sx={{
               backgroundColor: theme.palette.grey[50],

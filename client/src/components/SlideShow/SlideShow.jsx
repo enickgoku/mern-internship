@@ -23,14 +23,15 @@ const variants = {
     };
   },
 };
-
-export default function Slideshow({ photos = [] }) {
+const Slideshow = ({ photos = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const theme = useTheme();
   const isExtraSmall = useMediaQuery(theme.breakpoints.up("sm"));
+
   useEffect(() => {
+    if (!photos) return;
     const imagePromises = photos.map((photo) => {
       return new Promise((resolve) => {
         const img = new Image();
@@ -44,7 +45,7 @@ export default function Slideshow({ photos = [] }) {
     Promise.all(imagePromises).then(() => {
       setLoaded(true);
     });
-  }, [photos]);
+  }, [photos, loaded]);
 
   const handlePrevClick = () => {
     setCurrentIndex((currentIndex - 1 + photos.length) % photos.length);
@@ -73,36 +74,61 @@ export default function Slideshow({ photos = [] }) {
           transition={{ duration: 0.6 }}
         />
       )}
-      <IconButton
-        sx={{
-          backgroundColor: theme.palette.secondary[800],
-          position: "absolute",
-          top: "50%",
-          left: isExtraSmall ? "10px" : "120px",
-          transform: "translateY(-50%)",
-          "&:hover": {
-            backgroundColor: theme.palette.secondary[600],
-          },
-        }}
-        onClick={handlePrevClick}
-      >
-        <ChevronLeftIcon />
-      </IconButton>
-      <IconButton
-        sx={{
-          backgroundColor: theme.palette.secondary[800],
-          position: "absolute",
-          top: "50%",
-          right: isExtraSmall ? "10px" : "120px",
-          transform: "translateY(-50%)",
-          "&:hover": {
-            backgroundColor: theme.palette.secondary[600],
-          },
-        }}
-        onClick={handleNextClick}
-      >
-        <ChevronRightIcon />
-      </IconButton>
+      <ArrowButtons
+        handleNextClick={handleNextClick}
+        handlePrevClick={handlePrevClick}
+        isExtraSmall={isExtraSmall}
+        loaded={loaded}
+      />
     </Box>
   );
-}
+};
+
+const ArrowButtons = ({
+  handleNextClick,
+  handlePrevClick,
+  isExtraSmall,
+  loaded,
+}) => {
+  const theme = useTheme();
+  return (
+    <>
+      {loaded && (
+        <IconButton
+          sx={{
+            backgroundColor: theme.palette.secondary[800],
+            position: "absolute",
+            top: "50%",
+            left: isExtraSmall ? "10px" : "120px",
+            transform: "translateY(-50%)",
+            "&:hover": {
+              backgroundColor: theme.palette.secondary[600],
+            },
+          }}
+          onClick={handlePrevClick}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+      )}
+      {loaded && (
+        <IconButton
+          sx={{
+            backgroundColor: theme.palette.secondary[800],
+            position: "absolute",
+            top: "50%",
+            right: isExtraSmall ? "10px" : "120px",
+            transform: "translateY(-50%)",
+            "&:hover": {
+              backgroundColor: theme.palette.secondary[600],
+            },
+          }}
+          onClick={handleNextClick}
+        >
+          <ChevronRightIcon />
+        </IconButton>
+      )}
+    </>
+  );
+};
+
+export default Slideshow;

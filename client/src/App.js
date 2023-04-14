@@ -3,12 +3,13 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useGetUserQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
 import PropertyList from "./scenes/Properties";
 import Property from "./scenes/Property";
+import Underdevelopment from "./scenes/Underdevelopment";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -76,6 +77,7 @@ const App = () => {
               }
             />
           </Route>
+          <Route path="*" element={<Underdevelopment />} />
         </Routes>
       </ThemeProvider>
     </div>

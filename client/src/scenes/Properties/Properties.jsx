@@ -27,7 +27,7 @@ const PropertyCard = ({ property }) => {
     <Card
       sx={{
         width: isNotMobile ? "50vw" : "100vw",
-        margin: "2rem 2rem 0 2rem",
+        margin: "2rem 2rem 2rem 2rem",
         "&:hover": {
           cursor: "pointer",
           boxShadow: "0 0 10px 0 rgba(248,248,248,0.7)",
