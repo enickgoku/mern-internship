@@ -11,7 +11,15 @@ import SquareFootIcon from "@mui/icons-material/SquareFoot";
 const SummaryBar = ({ property }) => {
   const { homeType, bedrooms, bathrooms, parking, squareFootage } = property;
   return (
-    <Grid container direction="row" justifyContent="space-between">
+    <Grid
+      item
+      container
+      direction="row"
+      justifyContent="space-between"
+      sx={{
+        width: "100%",
+      }}
+    >
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <HouseIcon />

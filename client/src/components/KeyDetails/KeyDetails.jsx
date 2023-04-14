@@ -12,14 +12,10 @@ const DetailsSection = ({ property = [], clients = [], id }) => {
   };
 
   return (
-    <Grid
-      item
-      container
-      sx={{
-        width: "100%",
-      }}
-    >
+    <Grid container>
       <Tabs
+        variant="scrollable"
+        scrollButtons="auto"
         value={value}
         onChange={handleChange}
         TabIndicatorProps={{ style: { backgroundColor: "blue" } }}
@@ -46,10 +42,15 @@ const TabKeyFacts = ({ property }) => {
     mlsNumber,
   } = property;
 
-  console.log(property);
-
   return (
-    <>
+    <Grid
+      item
+      container
+      direction="column"
+      sx={{
+        width: { xs: "100%", sm: "800px" },
+      }}
+    >
       <Typography>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio non,
         dolorem dolore dolores quia quam totam odit! Veniam incidunt esse labore
@@ -145,7 +146,7 @@ const TabKeyFacts = ({ property }) => {
           # {mlsNumber}
         </Typography>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
@@ -163,11 +164,7 @@ const TabPanel = (props) => {
 };
 
 const KeyDetails = ({ id, property = [], clients = [] }) => {
-  return (
-    <>
-      <DetailsSection property={property} clients={clients} id={id} />
-    </>
-  );
+  return <DetailsSection property={property} clients={clients} id={id} />;
 };
 
 export default KeyDetails;

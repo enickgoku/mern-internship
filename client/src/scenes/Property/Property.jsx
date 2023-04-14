@@ -66,11 +66,15 @@ const Property = ({ properties = [], clients = [] }) => {
             item
             xs={12}
             sm={12}
+            justifyContent="center"
+            alignItems="center"
             sx={{
               backgroundColor: theme.palette.primary[50],
               color: theme.palette.primary[900],
-              border: "1px solid black",
+              padding: "1rem",
               borderRadius: "0.5rem",
+              boxShadow: "0 0 0.5rem 0.1rem #000000",
+              margin: "0.5rem",
             }}
           >
             <SummaryBar property={currentProperty || []} id={id} />
@@ -84,6 +88,7 @@ const Property = ({ properties = [], clients = [] }) => {
               border: "1px solid black",
               borderRadius: "0.5rem",
               width: "100%",
+              padding: "1rem",
             }}
           >
             <KeyDetails
