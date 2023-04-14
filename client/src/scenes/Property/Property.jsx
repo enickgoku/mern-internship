@@ -94,10 +94,19 @@ const Property = ({ properties = [], clients = [] }) => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Grid item container sx={{ width: "100%" }}>
-            <Grid item>
-              <Shortcuts />
-            </Grid>
+          <Grid
+            container
+            sx={{
+              width: "100%",
+              backgroundColor: theme.palette.primary[50],
+              color: theme.palette.primary[900],
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              boxShadow: "0 0 0.5rem 0.1rem #000000",
+              marginTop: "0.5rem",
+            }}
+          >
+            <Shortcuts />
           </Grid>
         </Grid>
       </Grid>

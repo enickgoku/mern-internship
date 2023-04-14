@@ -31,7 +31,6 @@ const Slideshow = ({ photos = [] }) => {
   const isExtraSmall = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    if (!photos) return;
     const imagePromises = photos.map((photo) => {
       return new Promise((resolve) => {
         const img = new Image();
@@ -45,6 +44,7 @@ const Slideshow = ({ photos = [] }) => {
     Promise.all(imagePromises).then(() => {
       setLoaded(true);
     });
+    if (!photos) return;
   }, [photos, loaded]);
 
   const handlePrevClick = () => {
@@ -58,7 +58,7 @@ const Slideshow = ({ photos = [] }) => {
   };
 
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: "relative", marginTop: "0.5rem" }}>
       {loaded && (
         <motion.img
           key={currentIndex}
@@ -72,6 +72,9 @@ const Slideshow = ({ photos = [] }) => {
           variants={variants}
           custom={direction}
           transition={{ duration: 0.6 }}
+          style={{
+            borderRadius: "10px",
+          }}
         />
       )}
       <ArrowButtons
