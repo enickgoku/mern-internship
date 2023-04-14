@@ -6,6 +6,11 @@ import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
 
+import HistoryIcon from "@mui/icons-material/History";
+import KeyIcon from "@mui/icons-material/Key";
+import DataUsageIcon from "@mui/icons-material/DataUsage";
+import GpsNotFixedIcon from "@mui/icons-material/GpsNotFixed";
+
 const blue = {
   500: "#007FFF",
 };
@@ -89,12 +94,41 @@ const Root = styled("span")(
 const Shortcuts = () => {
   const label = { slotProps: { input: { "aria-label": "Demo switch" } } };
   return (
-    <Grid container direction="row" alignItems="center">
+    <Grid container direction="column" alignItems="center">
       <Grid item>
         <Typography variant="h6">Shortcuts</Typography>
       </Grid>
-      <Grid item>
-        <SwitchUnstyled component={Root} {...label} />
+      <Grid item container direction="row" alignItems="center">
+        <Grid item>
+          <Typography variant="h6">Notify Similar Properties</Typography>
+        </Grid>
+        <Grid item>
+          <SwitchUnstyled component={Root} {...label} />
+        </Grid>
+      </Grid>
+      <Grid item container direction="column" alignItems="center">
+        <Grid item>
+          <KeyIcon />
+          <Typography variant="h6">Key Facts</Typography>
+        </Grid>
+      </Grid>
+      <Grid item container direction="column" alignItems="center">
+        <Grid item>
+          <HistoryIcon />
+          <Typography variant="h6">Property History</Typography>
+        </Grid>
+      </Grid>
+      <Grid item container direction="column" alignItems="center">
+        <Grid item>
+          <DataUsageIcon />
+          <Typography variant="h6">Demographics</Typography>
+        </Grid>
+      </Grid>
+      <Grid item container direction="column" alignItems="center">
+        <Grid item>
+          <GpsNotFixedIcon />
+          <Typography variant="h6">Points of Interest</Typography>
+        </Grid>
       </Grid>
     </Grid>
   );

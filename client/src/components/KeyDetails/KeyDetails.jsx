@@ -51,7 +51,7 @@ const TabKeyFacts = ({ property }) => {
         width: { xs: "100%", sm: "800px" },
       }}
     >
-      <Typography>
+      <Typography variant="h6">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio non,
         dolorem dolore dolores quia quam totam odit! Veniam incidunt esse labore
         odio iste, laborum dolor ratione consectetur quia minus libero.
@@ -63,8 +63,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Tax:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Tax:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           ${taxes} / 2022
         </Typography>
       </Grid>
@@ -76,8 +78,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Type:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Type:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           {homeType}
         </Typography>
       </Grid>
@@ -89,8 +93,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Building Age:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Building Age:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           {buildingAge} Years
         </Typography>
       </Grid>
@@ -102,8 +108,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Size:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Size:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           {squareFootage}
         </Typography>
       </Grid>
@@ -115,8 +123,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Garage Type / Spaces:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Garage Type / Spaces:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           {parking.garageType} / {parking.garageSpaces}
         </Typography>
       </Grid>
@@ -128,8 +138,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">Basement / Sqft:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          Basement / Sqft:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           {basement.type} / {basement.squareFootage}
         </Typography>
       </Grid>
@@ -141,8 +153,10 @@ const TabKeyFacts = ({ property }) => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Typography fontSize="1.25rem">MLS Number:</Typography>
-        <Typography fontSize="1.25rem" fontStyle="bold">
+        <Typography variant="h6" fontSize="1.25rem">
+          MLS Number:
+        </Typography>
+        <Typography variant="h6" fontSize="1.25rem" fontStyle="bold">
           # {mlsNumber}
         </Typography>
       </Grid>
