@@ -4,7 +4,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { useGetUserQuery } from "./state/api";
+import { useGetUserQuery, useGetPropertiesQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
 import PropertyList from "./scenes/Properties";
@@ -12,6 +12,9 @@ import Property from "./scenes/Property";
 import Underdevelopment from "./scenes/Underdevelopment";
 
 const { REACT_APP_API_URL } = process.env;
+
+// User is grabbed using redux and redux toolkit to showcase the use of redux toolkit
+// and the use of the useGetUserQuery hook to showcase the use of the RTK Query
 
 const App = () => {
   const mode = useSelector((state) => state.global.mode);
@@ -27,9 +30,11 @@ const App = () => {
     const data = await response.json();
     setClients(data);
   };
+
   const fetchProperties = async () => {
     const response = await fetch(`${REACT_APP_API_URL}/properties`);
     const data = await response.json();
+    // add photos to each property from the backend assests folder
     const propertiesWithPhotos = data.map((property) => {
       const photos = property.photos.map((filename) => {
         return `${REACT_APP_API_URL}/db/seeders/assets/${filename}`;
@@ -77,6 +82,7 @@ const App = () => {
               }
             />
           </Route>
+          {/* All other paths will be redirected to the under development page. */}
           <Route path="*" element={<Underdevelopment />} />
         </Routes>
       </ThemeProvider>

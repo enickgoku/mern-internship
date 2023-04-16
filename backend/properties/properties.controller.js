@@ -11,6 +11,17 @@ const list = async (req, res) => {
   }
 };
 
+const getProperty = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await service.getProperty(id);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 module.exports = {
   list: asyncErrorBoundary(list),
+  getProperty: asyncErrorBoundary(getProperty),
 };

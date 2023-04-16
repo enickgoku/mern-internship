@@ -6,6 +6,12 @@ const getProperties = async () => {
   return properties;
 };
 
+const getProperty = async (id) => {
+  const property = await Property.findById(id);
+  return property;
+};
+
 module.exports = {
   getProperties,
+  getProperty,
 };

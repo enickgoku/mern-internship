@@ -8,7 +8,9 @@ import Sidebar from "../../components/Sidebar";
 const Layout = ({ user }) => {
   const isNotMobile = useMediaQuery("(min-width: 600px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
+  // This will render the Navbar and Sidebar components
+  // and the Outlet component will render the component
+  // that is currently being viewed.
   return (
     <Box
       display={isNotMobile ? "flex" : "block"}

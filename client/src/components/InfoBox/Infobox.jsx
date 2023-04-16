@@ -17,8 +17,6 @@ import MailIcon from "@mui/icons-material/Mail";
 const List = ({ property = [], client = [], id }) => {
   const theme = useTheme();
 
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   const addCommasToPrice = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };

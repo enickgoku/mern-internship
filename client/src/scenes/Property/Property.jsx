@@ -9,21 +9,24 @@ import SummaryBar from "../../components/SummaryBar";
 import Shortcuts from "../../components/Shortcuts";
 
 const Property = ({ properties = [], clients = [] }) => {
-  const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
   const { id } = useParams(); // id is the property id
+
   const currentProperty = properties.find((property) => property._id === id);
+
   const currentClient = clients.find((client) =>
     currentProperty?.client.includes(client._id)
   );
   const [propertyPhotos, setPhotos] = useState([]);
-  const theme = useTheme();
 
   useEffect(() => {
     if (!currentProperty) return;
     if (!propertyPhotos) return;
     const { photos } = currentProperty;
     setPhotos(photos);
-  }, [currentProperty, propertyPhotos]);
+  }, [currentProperty, id, propertyPhotos]);
+
+  const isNonMediumScreen = useMediaQuery(useTheme().breakpoints.down("md"));
+  const theme = useTheme();
 
   return (
     <Grid
@@ -44,7 +47,7 @@ const Property = ({ properties = [], clients = [] }) => {
             container
             direction="column"
             sx={{
-              alignItems: isNonMediumScreen ? "flex-start" : "center",
+              alignItems: isNonMediumScreen ? "center" : "center",
               width: "100%",
             }}
           >
