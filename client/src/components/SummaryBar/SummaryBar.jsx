@@ -27,25 +27,53 @@ const SummaryBar = ({ property }) => {
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          sx={{
+            marginLeft: "0.1rem",
+          }}
+        >
           <BedIcon />
           <Typography>{bedrooms.toString()} Bedrooms</Typography>
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          sx={{
+            marginLeft: "0.1rem",
+          }}
+        >
           <HotTubIcon />
-          <Typography>{bathrooms.toString()} Bathrooms</Typography>
+          <Typography> {bathrooms.toString()} Bathrooms</Typography>
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          sx={{
+            marginLeft: "0.1rem",
+          }}
+        >
           <DirectionsCarIcon />
           <Typography>{parking.garageSpaces} Garage</Typography>
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="center">
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          sx={{
+            marginLeft: "0.1rem",
+          }}
+        >
           <SquareFootIcon />
           <Typography>{squareFootage} Sqft</Typography>
         </Grid>

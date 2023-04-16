@@ -4,7 +4,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { useGetUserQuery, useGetPropertiesQuery } from "./state/api";
+import { useGetUserQuery } from "./state/api";
 
 import Layout from "./scenes/Layout";
 import PropertyList from "./scenes/Properties";

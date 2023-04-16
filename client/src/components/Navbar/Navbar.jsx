@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  LightModeOutlined,
-  DarkModeOutlined,
   Menu as MenuIcon,
   Search,
   SettingsOutlined,
   ArrowDropDownOutlined,
-  Troubleshoot,
 } from "@mui/icons-material";
 import FlexContainer from "../FlexContainer";
-import { useDispatch } from "react-redux";
-import { setMode } from "../../state";
 import {
   AppBar,
   Box,
@@ -26,7 +21,6 @@ import {
 } from "@mui/material";
 
 const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
-  const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -40,30 +34,6 @@ const Navbar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  // if you scroll down, the navbar background will be black
-
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  // const handleScroll = () => {
-  //   console.log("handleScroll called");
-  //   const positionY = window.scrollY;
-  //   if (positionY > 0) {
-  //     setIsScrolling(true);
-  //   } else {
-  //     setIsScrolling(false);
-  //   }
-  // };
-
-  // // Add event listener for scroll events
-  // useEffect(() => {
-  //   if (window.scrollY > 0) {
-  //     setIsScrolling(true);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   return (
     <AppBar

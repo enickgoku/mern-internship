@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Box, Grid, Tab, Tabs, useTheme } from "@material-ui/core";
+import { Grid, Tab, Tabs } from "@material-ui/core";
 import { Divider, Typography } from "@mui/material";
 
 const DetailsSection = ({ property = [], clients = [], id }) => {
-  const theme = useTheme();
-
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -26,6 +24,12 @@ const DetailsSection = ({ property = [], clients = [], id }) => {
       </Tabs>
       <TabPanel value={value} index={0}>
         <TabKeyFacts property={property} />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <TabKeyDetails />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <TabRooms />
       </TabPanel>
     </Grid>
   );

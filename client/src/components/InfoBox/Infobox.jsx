@@ -1,12 +1,5 @@
-import React, { useEffect } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import React from "react";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 // ICONS
 import MapIcon from "@mui/icons-material/Map";
 import DirectionsIcon from "@mui/icons-material/Directions";
